@@ -1,0 +1,261 @@
+id: org.gnome.Shell
+runtime: org.gnome.Platform
+runtime-version: '47'
+sdk: org.gnome.Sdk
+command: gnome-shell
+modules:
+    # Build-time dependencies
+  - name: libical
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/libical/libical/releases/download/v3.0.19/libical-3.0.19.tar.gz
+        sha256: 6a1e7f0f50a399cbad826bcc286ce10d7151f3df7cc103f641de15160523c73f
+  - name: geocode-glib
+    buildsystem: meson
+    config-opts:
+      - -Dsoup2=false
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/geocode-glib/3.26/geocode-glib-3.26.4.tar.xz
+        sha256: 2d9a6826d158470449a173871221596da0f83ebdcff98b90c7049089056a37aa
+  - name: libgweather
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/libgweather/4.4/libgweather-4.4.4.tar.xz
+        sha256: 7017677753cdf7d1fdc355e4bfcdb1eba8369793a8df24d241427a939cbf4283
+  - shared-modules/libcanberra/libcanberra.json
+  - name: evolution-data-server
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DENABLE_GOA=OFF
+      - -DWITH_LIBDB=OFF
+      - -DWITH_OPENLDAP=OFF
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/evolution-data-server/3.55/evolution-data-server-3.55.2.tar.xz
+        sha256: 12f82c37d43424fb5ad3bd243c55b6a24cad21d0bb68e9cec16878f3bc6e5367
+  - shared-modules/libusb/libusb.json
+  - name: libgusb
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://github.com/hughsie/libgusb/releases/download/0.4.9/libgusb-0.4.9.tar.xz
+        sha256: 9df5ef301d6a4b361002aa52cce1165a87a89744055879bdbab31e7e86f1e846
+  - name: systemd-pkgconfig
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 systemd.pc -t ${FLATPAK_DEST}/lib/pkgconfig
+    sources:
+      - type: inline
+        dest-filename: systemd.pc
+        contents: |
+          root_prefix=/app
+          rootprefix=${root_prefix}
+          prefix=${rootprefix}
+          sysconf_dir=/app/etc
+          sysconfdir=${sysconf_dir}
+          systemd_util_dir=${prefix}/lib/systemd
+          systemdutildir=${systemd_util_dir}
+          systemd_system_unit_dir=${prefix}/lib/systemd/system
+          systemdsystemunitdir=${systemd_system_unit_dir}
+          systemd_system_preset_dir=${prefix}/lib/systemd/system-preset
+          systemdsystempresetdir=${systemd_system_preset_dir}
+          systemd_user_unit_dir=${prefix}/lib/systemd/user
+          systemduserunitdir=${systemd_user_unit_dir}
+          systemd_user_preset_dir=${prefix}/lib/systemd/user-preset
+          systemduserpresetdir=${systemd_user_preset_dir}
+          systemd_system_conf_dir=${sysconfdir}/systemd/system
+          systemdsystemconfdir=${systemd_system_conf_dir}
+          systemd_user_conf_dir=${sysconfdir}/systemd/user
+          systemduserconfdir=${systemd_user_conf_dir}
+          systemd_system_unit_path=${systemd_system_conf_dir}:/etc/systemd/system:/run/systemd/system:/usr/local/lib/systemd/system:${systemd_system_unit_dir}:/usr/lib/systemd/system:/lib/systemd/system
+          systemdsystemunitpath=${systemd_system_unit_path}
+          systemd_user_unit_path=${systemd_user_conf_dir}:/etc/systemd/user:/run/systemd/user:/usr/local/lib/systemd/user:/usr/local/share/systemd/user:${systemd_user_unit_dir}:/usr/lib/systemd/user:/usr/share/systemd/user
+          systemduserunitpath=${systemd_user_unit_path}
+          systemd_system_generator_dir=${prefix}/lib/systemd/system-generators
+          systemdsystemgeneratordir=${systemd_system_generator_dir}
+          systemd_user_generator_dir=${prefix}/lib/systemd/user-generators
+          systemdusergeneratordir=${systemd_user_generator_dir}
+          systemd_system_generator_path=/run/systemd/system-generators:/etc/systemd/system-generators:/usr/local/lib/systemd/system-generators:${systemd_system_generator_dir}
+          systemdsystemgeneratorpath=${systemd_system_generator_path}
+          systemd_user_generator_path=/run/systemd/user-generators:/etc/systemd/user-generators:/usr/local/lib/systemd/user-generators:${systemd_user_generator_dir}
+          systemdusergeneratorpath=${systemd_user_generator_path}
+          systemd_sleep_dir=${prefix}/lib/systemd/system-sleep
+          systemdsleepdir=${systemd_sleep_dir}
+          systemd_shutdown_dir=${prefix}/lib/systemd/system-shutdown
+          systemdshutdowndir=${systemd_shutdown_dir}
+          tmpfiles_dir=${prefix}/lib/tmpfiles.d
+          tmpfilesdir=${tmpfiles_dir}
+          user_tmpfiles_dir=${prefix}/share/user-tmpfiles.d
+          sysusers_dir=${prefix}/lib/sysusers.d
+          sysusersdir=${sysusers_dir}
+          sysctl_dir=${prefix}/lib/sysctl.d
+          sysctldir=${sysctl_dir}
+          binfmt_dir=${prefix}/lib/binfmt.d
+          binfmtdir=${binfmt_dir}
+          modules_load_dir=${prefix}/lib/modules-load.d
+          modulesloaddir=${modules_load_dir}
+          catalog_dir=${prefix}/lib/systemd/catalog
+          catalogdir=${catalog_dir}
+          system_uid_max=999
+          systemuidmax=${system_uid_max}
+          system_gid_max=999
+          systemgidmax=${system_gid_max}
+          dynamic_uid_min=61184
+          dynamicuidmin=${dynamic_uid_min}
+          dynamic_uid_max=65535
+          dynamicuidmax=${dynamic_uid_max}
+          container_uid_base_min=524288
+          containeruidbasemin=${container_uid_base_min}
+          container_uid_base_max=1878982656
+          containeruidbasemax=${container_uid_base_max}
+          foreign_uid_base=2147352576
+          Name: systemd
+          Description: systemd System and Service Manager
+          Version: 257
+  - name: udev-pkgconfig
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 udev.pc -t ${FLATPAK_DEST}/lib/pkgconfig
+    sources:
+      - type: inline
+        dest-filename: udev.pc
+        contents: |
+          Name: udev
+          Description: udev
+          Version: 257
+          udev_dir=/app/lib/udev
+          udevdir=${udev_dir}
+  - name: colord
+    buildsystem: meson
+    config-opts:
+      - -Dbash_completion=false
+      - -Dman=false
+    sources:
+      - type: archive
+        url: https://www.freedesktop.org/software/colord/releases/colord-1.4.7.tar.xz
+        sha256: de02d9910634ae159547585cec414e450f711c27235453b4f9b38a9f2361a653
+  - name: hwdata
+    buildsystem: autotools
+    config-opts:
+      - --datadir=${FLATPAK_DEST}/share
+    sources:
+      - type: archive
+        url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.392.tar.gz
+        sha256: 1f472d8f2ec824d4efe6a75480767c4ce240fa5d91b6428d9f8775035da3ba1f
+  - name: libdisplay-info
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://gitlab.freedesktop.org/emersion/libdisplay-info/-/releases/0.2.0/downloads/libdisplay-info-0.2.0.tar.xz
+        sha256: 5a2f002a16f42dd3540c8846f80a90b8f4bdcd067a94b9d2087bc2feae974176
+  - name: gnome-desktop
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/gnome-desktop/44/gnome-desktop-44.1.tar.xz
+        sha256: ae7ca55dc9e08914999741523a17d29ce223915626bd2462a120bf96f47a79ab
+  - name: libwacom
+    buildsystem: meson
+    config-opts:
+      - -Dtests=disabled
+    sources:
+      - type: archive
+        url: https://github.com/linuxwacom/libwacom/releases/download/libwacom-2.14.0/libwacom-2.14.0.tar.xz
+        sha256: 5900b3ad3d780e1b864103ace99cace9470db727a162517e1648c86a1bdec0e3
+  - name: mutter
+    buildsystem: meson
+    config-opts:
+      - -Dnative_backend=false
+      - -Dprofiler=false
+      - -Dstartup_notification=false
+      - -Dwayland=false # Depends on native backend but not enforced by build system
+      - -Dxwayland=false
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/mutter/47/mutter-47.5.tar.xz
+        sha256: 6551a33ce887e68415b13952af6d6b430e95306f9297adc8c111953e995c515b
+  - name: linux-pam
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://github.com/linux-pam/linux-pam/releases/download/v1.7.0/Linux-PAM-1.7.0.tar.xz
+        sha256: 57dcd7a6b966ecd5bbd95e1d11173734691e16b68692fa59661cdae9b13b1697
+  - name: polkit
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://github.com/polkit-org/polkit/archive/refs/tags/126.tar.gz
+        sha256: 2814a7281989f6baa9e57bd33bbc5e148827e2721ccef22aaf28ab2b376068e8
+    # Run-time dependencies
+  - python3-modules.yaml
+  - name: accountsservice
+    buildsystem: meson
+    build-options:
+        cflags: -Wno-implicit-function-declaration
+    sources:
+      - type: git
+        url: https://gitlab.freedesktop.org/accountsservice/accountsservice
+        tag: 23.13.9
+        commit: 57e491f5e6f3da2d5a949f4f8747c8f4e8ed799d
+  - name: dconf
+    buildsystem: meson
+    config-opts:
+      - -Dbash_completion=false
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/dconf/0.40/dconf-0.40.0.tar.xz
+        sha256: cf7f22a4c9200421d8d3325c5c1b8b93a36843650c9f95d6451e20f0bcb24533
+  - name: gdm
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/gdm/47/gdm-47.0.tar.xz
+        sha256: c5858326bfbcc8ace581352e2be44622dc0e9e5c2801c8690fd2eed502607f84
+  - name: upower
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://gitlab.freedesktop.org/upower/upower/-/archive/v1.90.7/upower-v1.90.7.tar.gz
+        sha256: 7d616e529ddfd4a4ced9dcf701c1d77628ef12e242d0603f32bedfa1a2c7e3ed
+  - name: libndp
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: http://libndp.org/files/libndp-1.9.tar.gz
+        sha256: a8ab214e01dc3a9b615276905395637f391298c84d77651f0cbf0b1082dd2dd4
+  - name: networkmanager
+    buildsystem: meson
+    config-opts:
+      - -Dlibaudit=no
+      - -Dmodem_manager=false
+      - -Dnmtui=false
+      - -Dovs=false
+      - -Dppp=false
+    sources:
+      - type: archive
+        url: https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/archive/1.50.2/NetworkManager-1.50.2.tar.gz
+        sha256: 4f64cc5f32eaa00120993de64b804b812f2ed34b563a70dc7c09df77111ded96
+  - name: gnome-settings-daemon
+    buildsystem: meson
+    config-opts:
+      - -Dwwan=false
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/gnome-settings-daemon/47/gnome-settings-daemon-47.2.tar.xz
+        sha256: 1eb758862e888f55a0869193087f1cfbcc7a1163654e630099ff4342dd3f6a5a
+    # GNOME Shell itself
+  - name: gnome-shell
+    buildsystem: meson
+    config-opts:
+      - -Dextensions_tool=false
+      - -Dman=false
+      - -Dnetworkmanager=false
+      - -Dportal_helper=false
+      - -Dtests=false
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/gnome-shell/47/gnome-shell-47.4.tar.xz
+        sha256: 680baf694f45f8fc832d245ada6c63b5fc4b030ccfbebbfc0e0e3bc28da2e46d
