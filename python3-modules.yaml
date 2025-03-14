@@ -24,8 +24,8 @@ modules:
           packagetype: bdist_wheel
           type: pypi
       - type: file
-        url: https://files.pythonhosted.org/packages/e8/61/9dd3e68d2b6aa40a5fc678662919be3c3a7bf22cba5a6b4437619b77e156/pyproject_metadata-0.9.0-py3-none-any.whl
-        sha256: fc862aab066a2e87734333293b0af5845fe8ac6cb69c451a41551001e923be0b
+        url: https://files.pythonhosted.org/packages/7e/b1/8e63033b259e0a4e40dd1ec4a9fee17718016845048b43a36ec67d62e6fe/pyproject_metadata-0.9.1-py3-none-any.whl
+        sha256: ee5efde548c3ed9b75a354fc319d5afd25e9585fa918a34f62f904cc731973ad
         x-checker-data:
           name: pyproject_metadata
           packagetype: bdist_wheel
@@ -40,8 +40,8 @@ modules:
     sources:
       - *id001
       - type: file
-        url: https://files.pythonhosted.org/packages/a0/b9/1906bfeb30f2fc13bb39bf7ddb8749784c05faadbd18a21cf141ba37bff2/setuptools_scm-8.1.0-py3-none-any.whl
-        sha256: 897a3226a6fd4a6eb2f068745e49733261a21f70b1bb28fce0339feb978d9af3
+        url: https://files.pythonhosted.org/packages/10/7c/5a9799042320242c383c4485a2771a37d49e8ce2312ca647653d2fd1a7a4/setuptools_scm-8.2.0-py3-none-any.whl
+        sha256: 136e2b1d393d709d2bcf26f275b8dec06c48b811154167b0fd6bb002aad17d6d
         x-checker-data:
           name: setuptools_scm
           packagetype: bdist_wheel
@@ -93,8 +93,8 @@ modules:
     sources:
       - &id002
         type: file
-        url: https://files.pythonhosted.org/packages/c1/d3/6be85a9c772d6ebba0cc3ab37390dd6620006dcced758667e0217fb13307/dbus-python-1.3.2.tar.gz
-        sha256: ad67819308618b5069537be237f8e68ca1c7fcc95ee4a121fe6845b1418248f8
+        url: https://files.pythonhosted.org/packages/ff/24/63118050c7dd7be04b1ccd60eab53fef00abe844442e1b6dec92dae505d6/dbus-python-1.4.0.tar.gz
+        sha256: 991666e498f60dbf3e49b8b7678f5559b8a65034fdf61aae62cdecdb7d89c770
         x-checker-data:
           name: dbus-python
           type: pypi
@@ -108,8 +108,8 @@ modules:
     sources:
       - *id002
       - type: file
-        url: https://files.pythonhosted.org/packages/b6/8a/797ccdfa99340b378f65916628745ed1f093c271c99e6878df1c6cf88a66/python_dbusmock-0.34.2.tar.gz
-        sha256: 69c3137f15d3397846fd4aeb2e7f41289aa4c7dc2a894502225186d1fcb396ec
+        url: https://files.pythonhosted.org/packages/54/02/ec6c7982d80c5c9e6d1beb445ca0a928bc945670e50b8b5a9cd1075b4f84/python_dbusmock-0.34.3.tar.gz
+        sha256: 439127291ec4364cbe3c2f58c47987bbe189e9493ccc6d56629bd484e79a6f8b
         x-checker-data:
           name: python_dbusmock
           type: pypi
