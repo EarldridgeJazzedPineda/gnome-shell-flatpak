@@ -139,8 +139,6 @@ modules:
         sha256: de02d9910634ae159547585cec414e450f711c27235453b4f9b38a9f2361a653
   - name: hwdata
     buildsystem: autotools
-    config-opts:
-      - --datadir=${FLATPAK_DEST}/share
     sources:
       - type: archive
         url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.393.tar.gz
@@ -197,8 +195,9 @@ modules:
         cflags: -Wno-implicit-function-declaration
     sources:
       - type: git
-        url: https://gitlab.freedesktop.org/accountsservice/accountsservice
-        tag: 23.13.9
+        # FIXME: Freedesktop GitLab is down
+        url: https://github.com/bobby285271/accountsservice # https://gitlab.freedesktop.org/accountsservice/accountsservice
+        # tag: 23.13.9
         commit: 57e491f5e6f3da2d5a949f4f8747c8f4e8ed799d
   - name: dconf
     buildsystem: meson
