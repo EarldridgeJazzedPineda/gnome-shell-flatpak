@@ -196,8 +196,8 @@ modules:
     sources:
       - type: git
         # FIXME: Freedesktop GitLab is down
-        url: https://github.com/bobby285271/accountsservice # https://gitlab.freedesktop.org/accountsservice/accountsservice
-        # tag: 23.13.9
+        url: git://anongit.freedesktop.org/accountsservice # https://gitlab.freedesktop.org/accountsservice/accountsservice
+        tag: 23.13.9
         commit: 57e491f5e6f3da2d5a949f4f8747c8f4e8ed799d
   - name: dconf
     buildsystem: meson
