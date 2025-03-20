@@ -1,6 +1,6 @@
 id: org.gnome.Shell
 runtime: org.gnome.Platform
-runtime-version: '47'
+runtime-version: '48'
 sdk: org.gnome.Sdk
 command: gnome-shell
 modules:
@@ -34,8 +34,8 @@ modules:
       - -DWITH_OPENLDAP=OFF
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.55/evolution-data-server-3.55.3.tar.xz
-        sha256: fe83e58a6107b86d8f62a705e78481f092d5e71b189bdf787d3e7d474868148d
+        url: https://download.gnome.org/sources/evolution-data-server/3.56/evolution-data-server-3.56.0.tar.xz
+        sha256: 7ae5482aa4ee2894467716c5be982500e1d511dddf4ab29b68fdb107d7f8a8ff
   - shared-modules/libusb/libusb.json
   - name: libgusb
     buildsystem: meson
@@ -163,9 +163,11 @@ modules:
       - type: archive
         url: https://github.com/linuxwacom/libwacom/releases/download/libwacom-2.14.0/libwacom-2.14.0.tar.xz
         sha256: 5900b3ad3d780e1b864103ace99cace9470db727a162517e1648c86a1bdec0e3
+  - python3-modules.yaml
   - name: mutter
     buildsystem: meson
     config-opts:
+      - -Dbash_completion=false
       - -Dnative_backend=false
       - -Dprofiler=false
       - -Dstartup_notification=false
@@ -173,8 +175,8 @@ modules:
       - -Dxwayland=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/mutter/47/mutter-47.6.tar.xz
-        sha256: dae1b69373b3b63d61f4d2fbb68e1d003b90a72a11e5e7b65ce7b78fe1bb576d
+        url: https://download.gnome.org/sources/mutter/48/mutter-48.0.tar.xz
+        sha256: 9ca177fd5851a4077f17f6a888c45447b7d1163c9879580597a1fd837f47e57d
   - name: linux-pam
     buildsystem: meson
     sources:
@@ -188,7 +190,6 @@ modules:
         url: https://github.com/polkit-org/polkit/archive/refs/tags/126.tar.gz
         sha256: 2814a7281989f6baa9e57bd33bbc5e148827e2721ccef22aaf28ab2b376068e8
     # Run-time dependencies
-  - python3-modules.yaml
   - name: accountsservice
     buildsystem: meson
     build-options:
@@ -211,8 +212,8 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gdm/47/gdm-47.0.tar.xz
-        sha256: c5858326bfbcc8ace581352e2be44622dc0e9e5c2801c8690fd2eed502607f84
+        url: https://download.gnome.org/sources/gdm/48/gdm-48.0.tar.xz
+        sha256: 1bc06daff093ec7b5e37ecb4f92e5da3474a1b1ba076edb9151ee967d1c30adf
   - name: upower
     buildsystem: meson
     sources:
@@ -244,18 +245,17 @@ modules:
       - -Dwwan=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gnome-settings-daemon/47/gnome-settings-daemon-47.2.tar.xz
-        sha256: 1eb758862e888f55a0869193087f1cfbcc7a1163654e630099ff4342dd3f6a5a
+        url: https://download.gnome.org/sources/gnome-settings-daemon/48/gnome-settings-daemon-48.0.tar.xz
+        sha256: f3da20ab4a2ba56fd3e97b991f2bc267973d5619bd58bfa516410aa036305e45
     # GNOME Shell itself
   - name: gnome-shell
     buildsystem: meson
     config-opts:
       - -Dextensions_tool=false
-      - -Dman=false
       - -Dnetworkmanager=false
       - -Dportal_helper=false
       - -Dtests=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gnome-shell/47/gnome-shell-47.5.tar.xz
-        sha256: 7b67bd22b1ca626e478cfc8518a6e74469478c0d124c1ae03f3cb86ad8363e84
+        url: https://download.gnome.org/sources/gnome-shell/48/gnome-shell-48.0.tar.xz
+        sha256: 36aac2edcdc7588aaadb658cd4687df262b37ba0b667102dcbefbff0c2232bc3

@@ -1,4 +1,4 @@
-# Generated with flatpak-pip-generator --build-only --checker-data --runtime=org.gnome.Sdk --yaml meson-python setuptools-scm scikit-build patchelf dbus-python python-dbusmock
+# Generated with flatpak-pip-generator --build-only --checker-data --runtime=org.gnome.Sdk --yaml meson-python setuptools-scm scikit-build-core patchelf dbus-python python-dbusmock docutils
 build-commands: []
 buildsystem: simple
 modules:
@@ -40,33 +40,33 @@ modules:
     sources:
       - *id001
       - type: file
-        url: https://files.pythonhosted.org/packages/10/7c/5a9799042320242c383c4485a2771a37d49e8ce2312ca647653d2fd1a7a4/setuptools_scm-8.2.0-py3-none-any.whl
-        sha256: 136e2b1d393d709d2bcf26f275b8dec06c48b811154167b0fd6bb002aad17d6d
+        url: https://files.pythonhosted.org/packages/55/bf/994a6da3f2a412630feb9d30ab4d35c78985a052ad28e6ee053ac92f00e5/setuptools_scm-8.2.1-py3-none-any.whl
+        sha256: 0d234a45ca9e4cb7379886b827558d952d1d8f730c3957e7f217b2ec77fe4402
         x-checker-data:
           name: setuptools_scm
           packagetype: bdist_wheel
           type: pypi
     cleanup:
       - '*'
-  - name: python3-scikit-build
+  - name: python3-scikit-build-core
     buildsystem: simple
     build-commands:
       - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
-        --prefix=${FLATPAK_DEST} "scikit-build" --no-build-isolation
+        --prefix=${FLATPAK_DEST} "scikit-build-core" --no-build-isolation
     sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl
-        sha256: 7bffd925d65168f85027d8da9af6bddab658135b840670a223589bc0c8ef02b2
-        x-checker-data:
-          name: distro
-          packagetype: bdist_wheel
-          type: pypi
       - *id001
       - type: file
-        url: https://files.pythonhosted.org/packages/c3/a3/21b519f58de90d684056c52ec4e45f744cfda7483f082dcc4dd18cc74a93/scikit_build-0.18.1-py3-none-any.whl
-        sha256: a6860e300f6807e76f21854163bdb9db16afc74eadf34bd6a9947d3fdfcd725a
+        url: https://files.pythonhosted.org/packages/cc/20/ff623b09d963f88bfde16306a54e12ee5ea43e9b597108672ff3a408aad6/pathspec-0.12.1-py3-none-any.whl
+        sha256: a0d503e138a4c123b27490a4f7beda6a01c6f288df0e4a8b79c7eb0dc7b4cc08
         x-checker-data:
-          name: scikit_build
+          name: pathspec
+          packagetype: bdist_wheel
+          type: pypi
+      - type: file
+        url: https://files.pythonhosted.org/packages/0a/ba/b37b9802f503894a46ef34aaa5851344cde48b39ab0af5057a6ee4f0d631/scikit_build_core-0.11.0-py3-none-any.whl
+        sha256: 04508609970fb4819d211197b8315bde9ee493ef4d20f08aa7447b0bf652523c
+        x-checker-data:
+          name: scikit_build_core
           packagetype: bdist_wheel
           type: pypi
     cleanup:
@@ -78,8 +78,8 @@ modules:
         --prefix=${FLATPAK_DEST} "patchelf" --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/83/ec/ac383eb82792e092d8037649b382cf78a7b79c2ce4e5b861f61519b9b14e/patchelf-0.17.2.1.tar.gz
-        sha256: a6eb0dd452ce4127d0d5e1eb26515e39186fa609364274bc1b0b77539cfa7031
+        url: https://files.pythonhosted.org/packages/0d/41/dc3ee5838db2d90be935adb53ae7745135d9c719d070b1989b246f983c7f/patchelf-0.17.2.2.tar.gz
+        sha256: 080b2ac3074fd4ab257700088e82470425e56609aa0dd07abe548f04b7b3b007
         x-checker-data:
           name: patchelf
           type: pypi
@@ -112,6 +112,21 @@ modules:
         sha256: 439127291ec4364cbe3c2f58c47987bbe189e9493ccc6d56629bd484e79a6f8b
         x-checker-data:
           name: python_dbusmock
+          type: pypi
+    cleanup:
+      - '*'
+  - name: python3-docutils
+    buildsystem: simple
+    build-commands:
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+        --prefix=${FLATPAK_DEST} "docutils" --no-build-isolation
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/8f/d7/9322c609343d929e75e7e5e6255e614fcc67572cfd083959cdef3b7aad79/docutils-0.21.2-py3-none-any.whl
+        sha256: dafca5b9e384f0e419294eb4d2ff9fa826435bf15f15b7bd45723e8ad76811b2
+        x-checker-data:
+          name: docutils
+          packagetype: bdist_wheel
           type: pypi
     cleanup:
       - '*'
